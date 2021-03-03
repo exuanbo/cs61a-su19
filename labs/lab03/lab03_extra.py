@@ -13,14 +13,14 @@ def is_prime(n):
     """
     "*** YOUR CODE HERE ***"
 
-    def is_multiple_of(i):
+    def is_not_multiple_of(i):
         if i ** 2 < n:
             if n % i == 0:
                 return False
-            return is_multiple_of(i + 1)
+            return is_not_multiple_of(i + 1)
         return True
 
-    return is_multiple_of(2)
+    return is_not_multiple_of(2)
 
 
 def gcd(a, b):
