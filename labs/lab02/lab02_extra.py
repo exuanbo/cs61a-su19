@@ -38,7 +38,7 @@ def composite_identity(f, g):
     False
     """
     "*** YOUR CODE HERE ***"
-    return lambda x: f(g(x)) == g(f(x))
+    return lambda x: compose1(f, g)(x) == compose1(g, f)(x)
 
 
 def count_cond(condition):
@@ -111,21 +111,18 @@ def cycle(f1, f2, f3):
     """
     "*** YOUR CODE HERE ***"
 
-    def create_cycle(n):
-        def calculate(x):
-            i = 1
-            f = lambda x: x
-            while i <= n:
-                if i % 3 == 1:
-                    f = f1
-                elif i % 3 == 2:
-                    f = f2
-                else:
-                    f = f3
-                x = f(x)
-                i += 1
-            return x
+    def create_cycle(times, target):
+        i = 1
+        f = lambda x: x
+        while i <= times:
+            if i % 3 == 1:
+                f = f1
+            elif i % 3 == 2:
+                f = f2
+            else:
+                f = f3
+            target = f(target)
+            i += 1
+        return target
 
-        return calculate
-
-    return create_cycle
+    return lambda_curry2(create_cycle)
