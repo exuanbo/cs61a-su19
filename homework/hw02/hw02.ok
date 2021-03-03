@@ -1,0 +1,28 @@
+{
+    "name": "Homework 2",
+    "endpoint": "cal/cs61a/su19/hw02",
+    "src": [
+        "hw02.py"
+    ],
+    "tests": {
+        "hw02.py": "doctest"
+    },
+    "default_tests": [
+        "product",
+        "factorial",
+        "accumulate",
+        "summation_using_accumulate",
+        "product_using_accumulate",
+        "make_repeater",
+        "num_sevens",
+        "pingpong",
+        "count_change"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "grading",
+        "analytics",
+        "backup"
+    ]
+}
