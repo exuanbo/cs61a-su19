@@ -215,14 +215,14 @@ def pingpong(n):
     """
     "*** YOUR CODE HERE ***"
 
-    def pingpong(element, index, addend):
+    def helper(element, index, addend):
         if index == n:
             return element
         if index % 7 == 0 or num_sevens(index) > 0:
-            return pingpong(element + (-addend), index + 1, -addend)
-        return pingpong(element + addend, index + 1, addend)
+            return helper(element + (-addend), index + 1, -addend)
+        return helper(element + addend, index + 1, addend)
 
-    return pingpong(1, 1, 1)
+    return helper(1, 1, 1)
 
 
 def count_change(amount):
