@@ -27,7 +27,8 @@ def enumerate(s, start=0):
     [[5, 'f'], [6, 'i'], [7, 'v'], [8, 'e']]
     """
     "*** YOUR CODE HERE ***"
-    return [[i, s[i - start]] for i in range(start, start + len(s))]
+    # return [[i, s[i - start]] for i in range(start, start + len(s))]
+    return couple(range(start, start + len(s)), s)
 
 
 from math import sqrt
