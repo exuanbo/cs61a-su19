@@ -414,15 +414,27 @@ def final_strategy(score, opponent_score):
     """
     # BEGIN PROBLEM 12
     score_after_bacon = score + free_bacon(opponent_score)
-    if score_after_bacon >= 100:
+    margin = 8
+    num_rolls = 4
+    if (
+        score_after_bacon >= 100
+        or opponent_score < 10
+        and not is_swap(score + 10, opponent_score)
+    ):
         return 0
-    if score > 90:
-        return 2
-    if score > 80 and score - opponent_score > 50:
-        return 3
-    if opponent_score > 80 and opponent_score - score > 50:
-        return 6
-    return swap_strategy(score, opponent_score)
+    if score > 80 or score - opponent_score > 20:
+        if is_swap(score_after_bacon, opponent_score + 1):
+            return 3
+        margin = 6
+        num_rolls = 3
+    elif opponent_score > 80 or opponent_score - score > 20:
+        if is_swap(score + 1, opponent_score):
+            return 10
+        if is_swap(score_after_bacon, opponent_score + 1):
+            return 0
+        margin = 10
+        num_rolls = 5
+    return swap_strategy(score, opponent_score, margin=margin, num_rolls=num_rolls)
     # END PROBLEM 12
 
 
