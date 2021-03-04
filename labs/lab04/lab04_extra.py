@@ -15,7 +15,7 @@ def squares(s):
     []
     """
     "*** YOUR CODE HERE ***"
-    return [int(sqrt(n)) for n in s if sqrt(n) % 1 == 0]
+    return [round(sqrt(n)) for n in s if sqrt(n) % 1 == 0]
 
 
 def key_of_min_value(d):
