@@ -46,11 +46,17 @@ def distance(city1, city2):
     5.0
     """
     "*** YOUR CODE HERE ***"
-    add_square = lambda a, b: a ** 2 + b ** 2
-    sub_with = lambda f: lambda a, b: f(a) - f(b)
     sub_lat = sub_with(get_lat)
     sub_lon = sub_with(get_lon)
     return sqrt(add_square(sub_lat(city1, city2), sub_lon(city1, city2)))
+
+
+def add_square(a, b):
+    return a ** 2 + b ** 2
+
+
+def sub_with(f):
+    return lambda a, b: f(a) - f(b)
 
 
 def closer_city(lat, lon, city1, city2):
