@@ -18,13 +18,17 @@ def build_successors_table(tokens):
     ['We']
     """
     table = {}
-    prev = '.'
+    prev = "."
     for word in tokens:
         if prev not in table:
             "*** YOUR CODE HERE ***"
+            table[prev] = [word]
+        else:
+            table[prev] += [word]
         "*** YOUR CODE HERE ***"
         prev = word
     return table
+
 
 def construct_sent(word, table):
     """Prints a random sentence starting with word, sampling from
@@ -37,28 +41,41 @@ def construct_sent(word, table):
     'Sentences are cool.'
     """
     import random
-    result = ''
-    while word not in ['.', '!', '?']:
+
+    result = ""
+    while word not in [".", "!", "?"]:
         "*** YOUR CODE HERE ***"
+        if len(result) != 0:
+            result += " "
+        result += word
+        word = table[word][0]
     return result.strip() + word
 
-def shakespeare_tokens(path='shakespeare.txt', url='http://composingprograms.com/shakespeare.txt'):
+
+def shakespeare_tokens(
+    path="shakespeare.txt", url="http://composingprograms.com/shakespeare.txt"
+):
     """Return the words of Shakespeare's plays as a list."""
     import os
     from urllib.request import urlopen
+
     if os.path.exists(path):
-        return open('shakespeare.txt', encoding='ascii').read().split()
+        return open("shakespeare.txt", encoding="ascii").read().split()
     else:
         shakespeare = urlopen(url)
-        return shakespeare.read().decode(encoding='ascii').split()
+        return shakespeare.read().decode(encoding="ascii").split()
+
 
 # Uncomment the following two lines
-# tokens = shakespeare_tokens()
-# table = build_successors_table(tokens)
+tokens = shakespeare_tokens()
+table = build_successors_table(tokens)
+
 
 def random_sent():
     import random
-    return construct_sent(random.choice(table['.']), table)
+
+    return construct_sent(random.choice(table["."]), table)
+
 
 def sprout_leaves(t, vals):
     """Sprout new leaves containing the data in vals at each leaf in
@@ -94,6 +111,10 @@ def sprout_leaves(t, vals):
           2
     """
     "*** YOUR CODE HERE ***"
+    if is_leaf(t):
+        return tree(label(t), [tree(v) for v in vals])
+    return tree(label(t), [sprout_leaves(b, vals) for b in branches(t)])
+
 
 def add_trees(t1, t2):
     """
@@ -131,3 +152,16 @@ def add_trees(t1, t2):
       5
     """
     "*** YOUR CODE HERE ***"
+    if not t1 or not t2:
+        return t1 or t2
+    return tree(
+        label(t1) + label(t2),
+        [add_trees(b1, b2) for b1, b2 in pair_lists(branches(t1), branches(t2))],
+    )
+
+
+def pair_lists(l1, l2):
+    return [
+        (i < len(l1) and l1[i] or None, i < len(l2) and l2[i] or None)
+        for i in range(max(len(l1), len(l2)))
+    ]

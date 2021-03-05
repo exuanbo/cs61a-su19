@@ -2,6 +2,7 @@ LAB_SOURCE_FILE = "lab05.py"
 
 """ Lab 05: Trees and Proj2 Prep """
 
+
 def merge(lst1, lst2):
     """Merges two sorted lists.
     >>> merge([1], [2])
@@ -14,11 +15,12 @@ def merge(lst1, lst2):
     [2, 4, 5, 6, 7]
     """
     if not lst1 or not lst2:
-        return []
+        return lst1 or lst2
     elif lst1[0] < lst2[0]:
         return [lst1[0]] + merge(lst1[1:], lst2)
     else:
         return [lst2[0]] + merge(lst1, lst2[1:])
+
 
 def add_chars(w1, w2):
     """
@@ -46,6 +48,16 @@ def add_chars(w1, w2):
     True
     """
     "*** YOUR CODE HERE ***"
+    if len(w1) == 0:
+        return w2
+    char = w2[0]
+    w2_without_char = w2[1:]
+    if char in w1:
+        w1_char_index = w1.index(char)
+        w1_without_char = w1[:w1_char_index] + w1[w1_char_index + 1 :]
+        return add_chars(w1_without_char, w2_without_char)
+    return char + add_chars(w1, w2_without_char)
+
 
 def acorn_finder(t):
     """Returns True if t contains a node with the value 'acorn' and
@@ -65,21 +77,28 @@ def acorn_finder(t):
     True
     """
     "*** YOUR CODE HERE ***"
+    if label(t) == "acorn":
+        return True
+    return any([acorn_finder(b) for b in branches(t)])
+
 
 # Tree ADT
 def tree(label, branches=[]):
     """Construct a tree with the given label value and a list of branches."""
     for branch in branches:
-        assert is_tree(branch), 'branches must be trees'
+        assert is_tree(branch), "branches must be trees"
     return [label] + list(branches)
+
 
 def label(tree):
     """Return the label value of a tree."""
     return tree[0]
 
+
 def branches(tree):
     """Return the list of branches of the given tree."""
     return tree[1:]
+
 
 def is_tree(tree):
     """Returns True if the given tree is a tree, and False otherwise."""
@@ -90,11 +109,13 @@ def is_tree(tree):
             return False
     return True
 
+
 def is_leaf(tree):
     """Returns True if the given tree's list of branches is empty, and False
     otherwise.
     """
     return not branches(tree)
+
 
 def print_tree(t, indent=0):
     """Print a representation of this tree in which each node is
@@ -115,9 +136,10 @@ def print_tree(t, indent=0):
       6
         7
     """
-    print('  ' * indent + str(label(t)))
+    print("  " * indent + str(label(t)))
     for b in branches(t):
         print_tree(b, indent + 1)
+
 
 def copy_tree(t):
     """Returns a copy of t. Only for testing purposes.
