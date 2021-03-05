@@ -14,7 +14,7 @@ def is_prime(n):
     "*** YOUR CODE HERE ***"
 
     def is_not_multiple_of(i):
-        if i ** 2 < n:
+        if i**2 < n:
             if n % i == 0:
                 return False
             return is_not_multiple_of(i + 1)

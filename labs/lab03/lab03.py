@@ -53,7 +53,6 @@ def hailstone(n):
 
 
 def summation(n, term):
-
     """Return the sum of the first n terms in the sequence defined by term.
     Implement using recursion!
 

@@ -2,6 +2,7 @@
 
 from lab05 import *
 
+
 # Shakespeare and Dictionaries
 def build_successors_table(tokens):
     """Return a dictionary: keys are words; values are lists of successors.
@@ -52,9 +53,8 @@ def construct_sent(word, table):
     return result.strip() + word
 
 
-def shakespeare_tokens(
-    path="shakespeare.txt", url="http://composingprograms.com/shakespeare.txt"
-):
+def shakespeare_tokens(path="shakespeare.txt",
+                       url="http://composingprograms.com/shakespeare.txt"):
     """Return the words of Shakespeare's plays as a list."""
     import os
     from urllib.request import urlopen
@@ -156,12 +156,13 @@ def add_trees(t1, t2):
         return t1 or t2
     return tree(
         label(t1) + label(t2),
-        [add_trees(b1, b2) for b1, b2 in pair_lists(branches(t1), branches(t2))],
+        [
+            add_trees(b1, b2)
+            for b1, b2 in pair_lists(branches(t1), branches(t2))
+        ],
     )
 
 
 def pair_lists(l1, l2):
-    return [
-        (i < len(l1) and l1[i] or None, i < len(l2) and l2[i] or None)
-        for i in range(max(len(l1), len(l2)))
-    ]
+    return [(i < len(l1) and l1[i] or None, i < len(l2) and l2[i] or None)
+            for i in range(max(len(l1), len(l2)))]

@@ -12,6 +12,7 @@ triple = lambda x: 3 * x
 
 increment = lambda x: x + 1
 
+
 ######################
 # Required Questions #
 ######################
@@ -124,7 +125,6 @@ def product_using_accumulate(n, term):
 
 def compose1(f, g):
     """Return a function h, such that h(x) = f(g(x))."""
-
     def h(x):
         return f(g(x))
 
@@ -243,11 +243,9 @@ def count_change(amount):
     "*** YOUR CODE HERE ***"
 
     def get_max_denomination_starts_from(denomination):
-        assert (
-            denomination == 1
-            or (denomination != 0)
-            and (denomination & (denomination - 1) == 0)
-        )
+        assert (denomination == 1
+                or (denomination != 0 and (denomination &
+                                           (denomination - 1) == 0)))
         if denomination > amount:
             return denomination // 2
         return get_max_denomination_starts_from(denomination * 2)
@@ -260,8 +258,9 @@ def count_change(amount):
         if max_denomination == 0:
             return 0
         return count_change_partition(
-            total_amount - max_denomination, max_denomination
-        ) + count_change_partition(total_amount, max_denomination // 2)
+            total_amount - max_denomination,
+            max_denomination) + count_change_partition(total_amount,
+                                                       max_denomination // 2)
 
     return count_change_partition(amount, get_max_denomination_starts_from(1))
 
@@ -325,4 +324,5 @@ def make_anonymous_factorial():
     >>> check(HW_SOURCE_FILE, 'make_anonymous_factorial', ['Assign', 'AugAssign', 'FunctionDef', 'Recursion'])
     True
     """
-    return (lambda f: f(f))(lambda f: lambda n: 1 if n == 0 else n * f(f)(n - 1))
+    return (
+        lambda f: f(f))(lambda f: lambda n: 1 if n == 0 else n * f(f)(n - 1))

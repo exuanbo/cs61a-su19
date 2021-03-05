@@ -31,7 +31,7 @@ def two_of_three(a, b, c):
     >>> two_of_three(5, 5, 5)
     50
     """
-    return a ** 2 + b ** 2 + c ** 2 - min(a, b, c) ** 2
+    return a**2 + b**2 + c**2 - min(a, b, c)**2
 
 
 def largest_factor(n):
@@ -46,7 +46,7 @@ def largest_factor(n):
     """
     "*** YOUR CODE HERE ***"
     factor = n - 1
-    while factor ** 2 > n:
+    while factor**2 > n:
         if n % factor == 0:
             return factor
         factor -= 1

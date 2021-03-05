@@ -52,7 +52,7 @@ def distance(city1, city2):
 
 
 def add_square(a, b):
-    return a ** 2 + b ** 2
+    return a**2 + b**2
 
 
 def sub_with(f):
@@ -75,8 +75,9 @@ def closer_city(lat, lon, city1, city2):
     """
     "*** YOUR CODE HERE ***"
     return get_name(
-        min(city1, city2, key=lambda city: distance(make_city(None, lat, lon), city))
-    )
+        min(city1,
+            city2,
+            key=lambda city: distance(make_city(None, lat, lon), city)))
 
 
 def check_abstraction():

@@ -1,5 +1,4 @@
 LAB_SOURCE_FILE = "lab05.py"
-
 """ Lab 05: Trees and Proj2 Prep """
 
 
@@ -54,7 +53,7 @@ def add_chars(w1, w2):
     w2_without_char = w2[1:]
     if char in w1:
         w1_char_index = w1.index(char)
-        w1_without_char = w1[:w1_char_index] + w1[w1_char_index + 1 :]
+        w1_without_char = w1[:w1_char_index] + w1[w1_char_index + 1:]
         return add_chars(w1_without_char, w2_without_char)
     return char + add_chars(w1, w2_without_char)
 

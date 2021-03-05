@@ -88,10 +88,10 @@ def street(inter):
 
 
 def avenue(inter):
-    return inter - (w(inter) ** 2 + w(inter)) // 2
+    return inter - (w(inter)**2 + w(inter)) // 2
 
 
-w = lambda z: int(((8 * z + 1) ** 0.5 - 1) / 2)
+w = lambda z: int(((8 * z + 1)**0.5 - 1) / 2)
 
 
 def taxicab(a, b):
@@ -236,9 +236,8 @@ def is_weight(w):
 
 def examples():
     t = mobile(side(1, weight(2)), side(2, weight(1)))
-    u = mobile(
-        side(5, weight(1)), side(1, mobile(side(2, weight(3)), side(3, weight(2))))
-    )
+    u = mobile(side(5, weight(1)),
+               side(1, mobile(side(2, weight(3)), side(3, weight(2)))))
     v = mobile(side(4, t), side(2, u))
     return (t, u, v)
 
@@ -285,10 +284,9 @@ def balanced(m):
     left_side_end = end(left_side)
     right_side_end = end(right_side)
     if is_weight(left_side_end) and is_weight(right_side_end):
-        return (
-            size(left_side_end) * left_side_length
-            == size(right_side_end) * right_side_length
-        )
+        return ((size(left_side_end) *
+                 left_side_length) == (size(right_side_end) *
+                                       right_side_length))
     left_total_weight = total_weight(left_side_end)
     right_total_weight = total_weight(right_side_end)
     if left_total_weight * left_side_length != right_total_weight * right_side_length:
@@ -331,9 +329,9 @@ def totals_tree(m):
     "*** YOUR CODE HERE ***"
     if is_weight(m):
         return tree(size(m))
-    return tree(
-        total_weight(m), [totals_tree(end(left(m))), totals_tree(end(right(m)))]
-    )
+    return tree(total_weight(m),
+                [totals_tree(end(left(m))),
+                 totals_tree(end(right(m)))])
 
 
 ###################
@@ -412,4 +410,4 @@ def pow_church(m, n):
     9
     """
     "*** YOUR CODE HERE ***"
-    return lambda f: lambda x: m(f)(x) ** n(f)(x)
+    return lambda f: lambda x: m(f)(x)**n(f)(x)

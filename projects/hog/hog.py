@@ -178,7 +178,6 @@ def announce_lead_changes(previous_leader=None):
     >>> f5 = f4(15, 13)
     Player 0 takes the lead by 2
     """
-
     def say(score0, score1):
         if score0 > score1:
             leader = 0
@@ -209,7 +208,6 @@ def both(f, g):
     Player 0 now has 6 and Player 1 now has 17
     Player 1 takes the lead by 11
     """
-
     def say(score0, score1):
         return both(f(score0, score1), g(score0, score1))
 
@@ -248,7 +246,9 @@ def announce_highest(who, previous_high=0, previous_score=0):
         gain = current_score - previous_score
         new_heigh = previous_high
         if gain > previous_high:
-            print(f"{gain} point(s)! That's the biggest gain yet for Player {who}")
+            print(
+                f"{gain} point(s)! That's the biggest gain yet for Player {who}"
+            )
             new_heigh = gain
         return announce_highest(who, new_heigh, current_score)
 
@@ -274,7 +274,6 @@ def always_roll(n):
     >>> strategy(99, 99)
     5
     """
-
     def strategy(score, opponent_score):
         return n
 
@@ -322,16 +321,14 @@ def max_scoring_num_rolls(dice=six_sided, num_samples=1000):
     highest_dice_number = 0
     current_dice_number = 1
     while current_dice_number <= 10:
-        current_average_score = make_averaged(roll_dice, num_samples)(
-            current_dice_number, dice
-        )
+        current_average_score = make_averaged(roll_dice,
+                                              num_samples)(current_dice_number,
+                                                           dice)
         if current_average_score > highest_average_score:
             highest_average_score = current_average_score
             highest_dice_number = current_dice_number
-        elif (
-            current_average_score == highest_average_score
-            and current_dice_number < highest_dice_number
-        ):
+        elif (current_average_score == highest_average_score
+              and current_dice_number < highest_dice_number):
             highest_dice_number = current_dice_number
         current_dice_number += 1
     return highest_dice_number
@@ -416,11 +413,8 @@ def final_strategy(score, opponent_score):
     score_after_bacon = score + free_bacon(opponent_score)
     margin = 8
     num_rolls = 4
-    if (
-        score_after_bacon >= 100
-        or opponent_score < 10
-        and not is_swap(score + 10, opponent_score)
-    ):
+    if (score_after_bacon >= 100 or
+        (opponent_score < 10 and not is_swap(score + 10, opponent_score))):
         return 0
     if score > 80 or score - opponent_score > 20:
         if is_swap(score_after_bacon, opponent_score + 1):
@@ -434,7 +428,10 @@ def final_strategy(score, opponent_score):
             return 0
         margin = 10
         num_rolls = 5
-    return swap_strategy(score, opponent_score, margin=margin, num_rolls=num_rolls)
+    return swap_strategy(score,
+                         opponent_score,
+                         margin=margin,
+                         num_rolls=num_rolls)
     # END PROBLEM 12
 
 
@@ -455,9 +452,10 @@ def run(*args):
     import argparse
 
     parser = argparse.ArgumentParser(description="Play Hog")
-    parser.add_argument(
-        "--run_experiments", "-r", action="store_true", help="Runs strategy experiments"
-    )
+    parser.add_argument("--run_experiments",
+                        "-r",
+                        action="store_true",
+                        help="Runs strategy experiments")
 
     args = parser.parse_args()
 
