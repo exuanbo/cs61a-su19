@@ -1,0 +1,25 @@
+{
+    "name": "Lab 5",
+    "endpoint": "cal/cs61a/su19/lab05",
+    "src": [
+        "lab05.py",
+        "lab05_extra.py"
+    ],
+    "tests": {
+        "lab05.py": "doctest",
+        "lab05_extra.py": "doctest"
+    },
+    "default_tests": [
+        "merge",
+        "add_chars",
+        "acorn_finder"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "unlock",
+        "grading",
+        "analytics",
+        "backup"
+    ]
+}
