@@ -1,0 +1,23 @@
+{
+    "name": "Lab 7",
+    "endpoint": "cal/cs61a/su19/lab07",
+    "src": [
+        "lab07.py"
+    ],
+    "tests": {
+        "tests/call_expressions.py": "ok_test",
+        "tests/mutability.py": "ok_test",
+        "lab07.py:paths": "doctest",
+        "lab07.py:num_trees": "doctest",
+        "lab07.py:prune_leaves": "doctest",
+        "lab07.py:dict_to_lst": "doctest"
+    },
+    "protocols": [
+        "restore",
+        "file_contents",
+        "unlock",
+        "grading",
+        "analytics",
+        "backup"
+    ]
+}
