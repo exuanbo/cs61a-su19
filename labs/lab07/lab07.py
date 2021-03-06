@@ -1,5 +1,6 @@
 """ Lab 07: Midterm Review """
 
+
 def paths(m, n):
     """Return the number of paths from one corner of an
     M by N grid to the opposite corner.
@@ -14,6 +15,10 @@ def paths(m, n):
     1
     """
     "*** YOUR CODE HERE ***"
+    if m == 1 or n == 1:
+        return 1
+    return paths(m - 1, n) + paths(m, n - 1)
+
 
 def num_trees(n):
     """How many full binary trees have exactly n leaves? E.g.,
@@ -36,6 +41,13 @@ def num_trees(n):
 
     """
     "*** YOUR CODE HERE ***"
+    if n == 1 or n == 2:
+        return 1
+    total_num_trees = 0
+    for i in range(1, n):
+        total_num_trees += num_trees(i) * num_trees(n - i)
+    return total_num_trees
+
 
 def prune_leaves(t, vals):
     """Return a modified copy of t with all leaves that have a label
@@ -62,6 +74,14 @@ def prune_leaves(t, vals):
       6
     """
     "*** YOUR CODE HERE ***"
+    if is_leaf(t) and label(t) in vals:
+        return
+    return tree(label(t), [
+        pruned_branch
+        for pruned_branch in [prune_leaves(b, vals) for b in branches(t)]
+        if pruned_branch is not None
+    ])
+
 
 def dict_to_lst(d):
     """Returns a list containing all the (key, value) pairs in d as two-element
@@ -76,10 +96,11 @@ def dict_to_lst(d):
     """
     result = []
     for _ in range(len(d)):
-        pair = min(d.items(), key=______________________)
-        d.pop(_________)
-        _______________________
+        pair = min(d.items(), key=lambda pair: pair[1])
+        d.pop(pair[0])
+        result.append(pair)
     return result
+
 
 # Tree ADT
 def tree(label, branches=[]):
@@ -88,13 +109,16 @@ def tree(label, branches=[]):
         assert is_tree(branch), 'branches must be trees'
     return [label] + list(branches)
 
+
 def label(tree):
     """Return the label value of a tree."""
     return tree[0]
 
+
 def branches(tree):
     """Return the list of branches of the given tree."""
     return tree[1:]
+
 
 def is_tree(tree):
     """Returns True if the given tree is a tree, and False otherwise."""
@@ -105,11 +129,13 @@ def is_tree(tree):
             return False
     return True
 
+
 def is_leaf(tree):
     """Returns True if the given tree's list of branches is empty, and False
     otherwise.
     """
     return not branches(tree)
+
 
 def print_tree(t, indent=0):
     """Print a representation of this tree in which each node is
@@ -133,6 +159,7 @@ def print_tree(t, indent=0):
     print('  ' * indent + str(label(t)))
     for b in branches(t):
         print_tree(b, indent + 1)
+
 
 def copy_tree(t):
     """Returns a copy of t. Only for testing purposes.
