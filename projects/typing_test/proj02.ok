@@ -1,0 +1,27 @@
+{
+    "name": "Project 2: Typing Test",
+    "endpoint": "cal/cs61a/su19/proj02",
+    "src": [
+        "utils.py",
+        "typing_test.py"
+    ],
+    "tests": {
+        "tests/01.py": "ok_test",
+        "tests/02.py": "ok_test",
+        "tests/03.py": "ok_test",
+        "tests/04.py": "ok_test",
+        "tests/05.py": "ok_test",
+        "tests/06.py": "ok_test",
+        "tests/07.py": "ok_test",
+        "tests/08.py": "ok_test"
+    },
+    "protocols": [
+        "restore",
+        "file_contents",
+        "unlock",
+        "grading",
+        "analytics",
+        "collaborate",
+        "backup"
+    ]
+}
