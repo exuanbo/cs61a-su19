@@ -9,27 +9,21 @@ test = {
           >>> from car import *
           >>> tiffanys_car = Car('Tesla', 'Model S')
           >>> tiffanys_car.model
-          066daa99c4c14fba33ca7fea6de5139e
-          # locked
+          'Model S'
           >>> tiffanys_car.gas = 10
           >>> tiffanys_car.drive()
-          6782dfbb8a7616b3f504afa7bdbc4efe
-          # locked
+          'Tesla Model S goes vroom!'
           >>> tiffanys_car.drive()
-          85ac99d9ea4aac334a8bfe842d10c09d
-          # locked
+          'Cannot drive!'
           >>> tiffanys_car.fill_gas()
-          7b0c88ff69d31a8e50f681edcc9d6ef5
-          # locked
+          'Gas level: 20'
           >>> tiffanys_car.gas
-          2b5c8adf725274c931c4272b26ac97ea
-          # locked
+          20
           >>> Car.gas
-          e0c9124d3360b0721b517ec33d41b017
-          # locked
+          30
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
@@ -37,45 +31,36 @@ test = {
           >>> christophers_car = Car('Tesla', 'Model S')
           >>> christophers_car.wheels = 2
           >>> christophers_car.wheels
-          9338923f09aac77121029c604f7ce4f3
-          # locked
+          2
           >>> Car.num_wheels
-          612ff2a71cad53bc4c7f85fac678a06d
-          # locked
+          4
           >>> christophers_car.drive() # Type Error if an error occurs and Nothing if nothing is displayed
-          85ac99d9ea4aac334a8bfe842d10c09d
-          # locked
+          'Cannot drive!'
           >>> Car.drive() # Type Error if an error occurs and Nothing if nothing is displayed
-          8a2fd4e4c3c6dcce2dc631af62ee217a
-          # locked
+          Error
           >>> Car.drive(christophers_car) # Type Error if an error occurs and Nothing if nothing is displayed
-          85ac99d9ea4aac334a8bfe842d10c09d
-          # locked
+          'Cannot drive!'
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
           >>> from car import *
           >>> alexs_car = MonsterTruck('Monster', 'Batmobile')
           >>> alexs_car.drive() # Type Error if an error occurs and Nothing if nothing is displayed
-          543d3c4044c7b885e6bc773187315cb9
-          2e96bc0878a8a5a4b77deec4ef4b3d09
-          # locked
+          Vroom! This Monster Truck is huge!
+          'Monster Batmobile goes vroom!'
           >>> Car.drive(alexs_car) # Type Error if an error occurs and Nothing if nothing is displayed
-          2e96bc0878a8a5a4b77deec4ef4b3d09
-          # locked
+          'Monster Batmobile goes vroom!'
           >>> MonsterTruck.drive(alexs_car) # Type Error if an error occurs and Nothing if nothing is displayed
-          543d3c4044c7b885e6bc773187315cb9
-          2e96bc0878a8a5a4b77deec4ef4b3d09
-          # locked
+          Vroom! This Monster Truck is huge!
+          'Monster Batmobile goes vroom!'
           >>> Car.rev(alexs_car) # Type Error if an error occurs and Nothing if nothing is displayed
-          8a2fd4e4c3c6dcce2dc631af62ee217a
-          # locked
+          Error
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         }
       ],
       'scored': False,
