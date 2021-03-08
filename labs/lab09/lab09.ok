@@ -1,0 +1,31 @@
+{
+    "name": "Lab 9",
+    "endpoint": "cal/cs61a/su19/lab09",
+    "src": [
+        "lab09.py",
+        "lab09_extra.py"
+    ],
+    "tests": {
+        "tests/link.py": "ok_test",
+        "lab09.py:link_to_list": "doctest",
+        "lab09.py:store_digits": "doctest",
+        "lab09.py:cumulative_sum": "doctest",
+        "lab09_extra.py:has_cycle": "doctest",
+        "lab09_extra.py:has_cycle_constant": "doctest",
+        "lab09_extra.py:reverse_other": "doctest"
+    },
+    "default_tests": [
+        "link",
+        "link_to_list",
+        "store_digits",
+        "cumulative_sum"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "unlock",
+        "grading",
+        "analytics",
+        "backup"
+    ]
+}
