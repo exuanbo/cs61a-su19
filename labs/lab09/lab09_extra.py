@@ -1,5 +1,6 @@
 """ Optional problems for Lab 9 """
 
+
 class Link:
     """A linked list.
 
@@ -40,6 +41,7 @@ class Link:
             string += str(self.first) + ' '
             self = self.rest
         return string + str(self.first) + '>'
+
 
 class Tree:
     """
@@ -113,7 +115,9 @@ class Tree:
             for b in t.branches:
                 tree_str += print_tree(b, indent + 1)
             return tree_str
+
         return print_tree(self).rstrip()
+
 
 def has_cycle(link):
     """Return whether link contains a cycle.
@@ -130,6 +134,17 @@ def has_cycle(link):
     False
     """
     "*** YOUR CODE HERE ***"
+    if link is Link.empty:
+        return False
+    links = [link]
+    rest_link = link.rest
+    while rest_link is not Link.empty:
+        if rest_link in links:
+            return True
+        links.append(rest_link)
+        rest_link = rest_link.rest
+    return False
+
 
 def has_cycle_constant(link):
     """Return whether link contains a cycle.
@@ -143,6 +158,17 @@ def has_cycle_constant(link):
     False
     """
     "*** YOUR CODE HERE ***"
+    if link is Link.empty:
+        return False
+    slow, fast = link, link.rest
+    while fast is not Link.empty:
+        if fast.rest == Link.empty:
+            return False
+        if fast is slow or fast.rest is slow:
+            return True
+        slow, fast = slow.rest, fast.rest.rest
+    return False
+
 
 def reverse_other(t):
     """Mutates the tree such that nodes on every other (odd-depth) level
@@ -158,3 +184,19 @@ def reverse_other(t):
     Tree(1, [Tree(8, [Tree(3, [Tree(5), Tree(4)]), Tree(6, [Tree(7)])]), Tree(2)])
     """
     "*** YOUR CODE HERE ***"
+
+    def helper(t, is_odd_depth=True):
+        if len(t.branches) <= 1:
+            return
+        if is_odd_depth:
+            reverse_branches_labels(t)
+        for b in t.branches:
+            helper(b, not is_odd_depth)
+
+    return helper(t)
+
+
+def reverse_branches_labels(t):
+    reversed_label_list = [b.label for b in t.branches][::-1]
+    for b_index, b in enumerate(t.branches):
+        b.label = reversed_label_list[b_index]
