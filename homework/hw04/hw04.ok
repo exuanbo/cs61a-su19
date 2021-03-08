@@ -1,0 +1,26 @@
+{
+    "name": "Homework 4",
+    "endpoint": "cal/cs61a/su19/hw04",
+    "src": [
+        "hw04.py"
+    ],
+    "tests": {
+        "hw04.py": "doctest"
+    },
+    "default_tests": [
+        "make_fib",
+        "make_withdraw",
+        "Mint",
+        "VendingMachine",
+        "remove_all",
+        "generate_paths"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "unlock",
+        "grading",
+        "analytics",
+        "backup"
+    ]
+}
