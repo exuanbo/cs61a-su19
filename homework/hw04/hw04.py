@@ -18,6 +18,20 @@ def make_fib():
     12
     """
     "*** YOUR CODE HERE ***"
+    count = 0
+    last_fib = 0
+    current_fib = 1
+
+    def fib():
+        nonlocal count, last_fib, current_fib
+        if count <= 1:
+            count += 1
+            return count - 1
+        last_fib, current_fib = current_fib, current_fib + last_fib
+        return current_fib
+
+    return fib
+
 
 def make_withdraw(balance, password):
     """Return a password-protected withdraw function.
@@ -48,6 +62,22 @@ def make_withdraw(balance, password):
     True
     """
     "*** YOUR CODE HERE ***"
+    wrong_password_list = []
+
+    def w(amount, provided_password):
+        nonlocal balance
+        if len(wrong_password_list) == 3:
+            return f"Your account is locked. Attempts: {wrong_password_list}"
+        if provided_password != password:
+            wrong_password_list.append(provided_password)
+            return "Incorrect password"
+        if amount > balance:
+            return "Insufficient funds"
+        balance -= amount
+        return balance
+
+    return w
+
 
 class Mint:
     """A mint creates coins by stamping on years.
@@ -86,9 +116,12 @@ class Mint:
 
     def create(self, kind):
         "*** YOUR CODE HERE ***"
+        return kind(self.year)
 
     def update(self):
         "*** YOUR CODE HERE ***"
+        self.year = Mint.current_year
+
 
 class Coin:
     def __init__(self, year):
@@ -96,12 +129,20 @@ class Coin:
 
     def worth(self):
         "*** YOUR CODE HERE ***"
+        extra_worth = 0
+        year_of_age = Mint.current_year - self.year
+        if year_of_age > 50:
+            extra_worth = year_of_age - 50
+        return self.cents + extra_worth
+
 
 class Nickel(Coin):
     cents = 5
 
+
 class Dime(Coin):
     cents = 10
+
 
 class VendingMachine:
     """A vending machine that vends some product for some price.
@@ -141,8 +182,37 @@ class VendingMachine:
     'Here is your soda.'
     """
     "*** YOUR CODE HERE ***"
+    stock = 0
+    balance = 0
 
-def remove_all(link , value):
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
+    def vend(self):
+        if self.stock == 0:
+            return "Machine is out of stock."
+        if self.balance < self.price:
+            return f"You must deposit ${self.price - self.balance} more."
+        self.stock -= 1
+        change = self.balance - self.price
+        self.balance = 0
+        if change > 0:
+            return f"Here is your {self.name} and ${change} change."
+        return f"Here is your {self.name}."
+
+    def deposit(self, money):
+        if self.stock == 0:
+            return f"Machine is out of stock. Here is your ${money}."
+        self.balance += money
+        return f"Current balance: ${self.balance}"
+
+    def restock(self, amount):
+        self.stock += amount
+        return f"Current {self.name} stock: {self.stock}"
+
+
+def remove_all(link, value):
     """Remove all the nodes containing value in link. Assume that the
     first element is never removed.
 
@@ -160,6 +230,13 @@ def remove_all(link , value):
     <0 1>
     """
     "*** YOUR CODE HERE ***"
+    if link.rest is Link.empty:
+        return
+    if link.rest.first == value:
+        link.rest = link.rest.rest
+        return remove_all(link, value)
+    remove_all(link.rest, value)
+
 
 def generate_paths(t, x):
     """Yields all possible paths from the root of t to a node with the label x
@@ -197,13 +274,18 @@ def generate_paths(t, x):
     """
 
     "*** YOUR CODE HERE ***"
+    if t.label == x:
+        yield [t.label]
 
-    for _______________ in _________________:
-        for _______________ in _________________:
+    for b in t.branches:
+        for path in generate_paths(b, x):
 
             "*** YOUR CODE HERE ***"
+            yield [t.label] + path
+
 
 ## Link Class ##
+
 
 class Link:
     """A linked list.
@@ -246,7 +328,9 @@ class Link:
             self = self.rest
         return string + str(self.first) + '>'
 
+
 ## Tree Class ##
+
 
 class Tree:
     """
@@ -320,4 +404,5 @@ class Tree:
             for b in t.branches:
                 tree_str += print_tree(b, indent + 1)
             return tree_str
+
         return print_tree(self).rstrip()
