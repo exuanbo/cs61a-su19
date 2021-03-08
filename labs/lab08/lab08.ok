@@ -1,0 +1,34 @@
+{
+    "name": "Lab 8",
+    "endpoint": "cal/cs61a/su19/lab08",
+    "src": [
+        "classes.py"
+    ],
+    "tests": {
+        "tests/car.py": "ok_test",
+        "classes.py:Card.__init__": "doctest",
+        "classes.py:Card.power": "doctest",
+        "classes.py:Player.__init__": "doctest",
+        "classes.py:Player.draw": "doctest",
+        "classes.py:Player.play": "doctest",
+        "classes.py:TutorCard.effect": "doctest",
+        "classes.py:TACard.effect": "doctest",
+        "classes.py:InstructorCard.effect": "doctest"
+    },
+    "default_tests": [
+        "car",
+        "Card.__init__",
+        "Card.power",
+        "Player.__init__",
+        "Player.draw",
+        "Player.play"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "unlock",
+        "grading",
+        "analytics",
+        "backup"
+    ]
+}
