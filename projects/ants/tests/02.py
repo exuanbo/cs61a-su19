@@ -5,7 +5,7 @@ test = {
     {
       'cases': [
         {
-          'answer': 'ba9d5316d8a8cf38d31424fc9bc51ea9',
+          'answer': 'A single tile that an Ant can be placed on and that connects to other Places',
           'choices': [
             r"""
             A single tile that an Ant can be placed on and that connects to
@@ -16,11 +16,11 @@ test = {
             'Where the bees start out in the game'
           ],
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'question': 'What does a Place represent in the game?'
         },
         {
-          'answer': '15228a7843d3a3fcf93af025b20574b1',
+          'answer': 'When p is initialized',
           'choices': [
             'When q.entrance is initialized',
             'When q.exit is initialized',
@@ -28,7 +28,7 @@ test = {
             'Never, it is always set to None'
           ],
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'question': 'If p is a place whose entrance is q, when is p.entrance initialized?'
         }
       ],
@@ -42,21 +42,17 @@ test = {
           >>> # Simple test for Place
           >>> place0 = Place('place_0')
           >>> print(place0.exit)
-          044ef3c0c6fd739b6260fe6f6cae71dd
-          # locked
+          None
           >>> print(place0.entrance)
-          044ef3c0c6fd739b6260fe6f6cae71dd
-          # locked
+          None
           >>> place1 = Place('place_1', place0)
           >>> place1.exit is place0
-          c7a88a0ffd3aef026b98eef6e7557da3
-          # locked
+          True
           >>> place0.entrance is place1
-          c7a88a0ffd3aef026b98eef6e7557da3
-          # locked
+          True
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
