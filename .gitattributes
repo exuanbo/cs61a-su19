@@ -3,3 +3,4 @@ projects/ants/assets/* linguist-vendored
 projects/ants/gui.html linguist-vendored
 labs/lab11/editor/**/* linguist-vendored
 homework/hw06/editor/**/* linguist-vendored
+labs/lab12/editor/**/* linguist-vendored
