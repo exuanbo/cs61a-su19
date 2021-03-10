@@ -1,0 +1,30 @@
+{
+    "name": "Lab 12",
+    "endpoint": "cal/cs61a/su19/lab12",
+    "src": [
+        "lab12.scm",
+        "lab12_extra.scm"
+    ],
+    "tests": {
+        "tests/switch.py": "ok_test",
+        "tests/scheme-def.py": "ok_test",
+        "tests/repeatedly-cube.py": "ok_test",
+        "tests/wwsd-quasiquote.py": "ok_test",
+        "tests/wwsd-macros.py": "ok_test",
+        "tests/dragon.py": "ok_test"
+    },
+    "default_tests": [
+        "wwsd-macros",
+        "wwsd-quasiquote",
+        "repeatedly-cube",
+        "scheme-def"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "unlock",
+        "grading",
+        "analytics",
+        "backup"
+    ]
+}
