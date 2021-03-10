@@ -1,0 +1,37 @@
+{
+    "name": "Homework 6",
+    "endpoint": "cal/cs61a/su19/hw06",
+    "src": [
+        "hw06.scm"
+    ],
+    "tests": {
+        "tests/cadr-caddr.py": "ok_test",
+        "tests/count.py": "ok_test",
+        "tests/unique.py": "ok_test",
+        "tests/tally.py": "ok_test",
+        "tests/cons-all.py": "ok_test",
+        "tests/list-change.py": "ok_test",
+        "tests/replicate.py": "ok_test",
+        "tests/accumulate.py": "ok_test",
+        "tests/accumulate-tail.py": "ok_test",
+        "tests/list-comp.py": "ok_test"
+    },
+    "default_tests": [
+        "cadr-caddr",
+        "unique",
+        "cons-all",
+        "list-change",
+        "replicate",
+        "accumulate",
+        "accumulate-tail",
+        "list-comp"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "grading",
+        "analytics",
+        "unlock",
+        "backup"
+    ]
+}
