@@ -2,3 +2,4 @@ projects/typing_test/gui/**/* linguist-vendored
 projects/ants/assets/* linguist-vendored
 projects/ants/gui.html linguist-vendored
 labs/lab11/editor/**/* linguist-vendored
+homework/hw06/editor/**/* linguist-vendored
