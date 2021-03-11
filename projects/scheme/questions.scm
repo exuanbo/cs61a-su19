@@ -9,16 +9,24 @@
 ;; Returns a list of two-element lists
 (define (enumerate s)
   ; BEGIN PROBLEM 17
-  'replace-this-line
-  )
+  (define (helper i xs acc)
+    (if (null? xs)
+      acc
+      (helper
+        (+ i 1)
+        (cdr xs)
+        (let ((res (list (list i (car xs)))))
+          (if (null? acc)
+            res
+            (append acc res))))))
+  (helper 0 s nil))
   ; END PROBLEM 17
 
 ;; Problem 18
 
 (define (zip pairs)
   ; BEGIN PROBLEM 18
-  'replace-this-line
-  )
+  (list (map car pairs) (map cadr pairs)))
   ; END PROBLEM 18
 
 
@@ -33,15 +41,16 @@
 (define let?    (check-special 'let))
 
 ;; Converts all let special forms in EXPR into equivalent forms using lambda
+; https://github.com/sgalal/cs61a/blob/master/Projects/scheme/questions.scm#L38
 (define (let-to-lambda expr)
   (cond ((atom? expr)
          ; BEGIN PROBLEM 19
-         'replace-this-line
+         expr
          ; END PROBLEM 19
          )
         ((quoted? expr)
          ; BEGIN PROBLEM 19
-         'replace-this-line
+         expr
          ; END PROBLEM 19
          )
         ((or (lambda? expr)
@@ -50,18 +59,18 @@
                (params (cadr expr))
                (body   (cddr expr)))
            ; BEGIN PROBLEM 19
-           'replace-this-line
+           (cons form (cons params (map let-to-lambda body)))
            ; END PROBLEM 19
            ))
         ((let? expr)
          (let ((values (cadr expr))
                (body   (cddr expr)))
            ; BEGIN PROBLEM 19
-           'replace-this-line
+            (append (cons (cons 'lambda (cons (car (zip values)) (map let-to-lambda body))) nil) (map let-to-lambda (cadr (zip values))))
            ; END PROBLEM 19
            ))
         (else
          ; BEGIN PROBLEM 19
-         'replace-this-line
+         (cons (car expr) (map let-to-lambda (cdr expr)))
          ; END PROBLEM 19
          )))

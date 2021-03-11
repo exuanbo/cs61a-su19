@@ -26,6 +26,7 @@ import scheme
 
 # Pairs and Scheme lists
 
+
 class Pair(object):
     """A pair has two instance attributes: first and second. Second must be a Pair or nil
 
@@ -39,8 +40,11 @@ class Pair(object):
     """
     def __init__(self, first, second):
         from scheme_builtins import scheme_valid_cdrp, SchemeError
-        if not (second is nil or isinstance(second, Pair) or type(second).__name__ == 'Promise'):
-            raise SchemeError("cdr can only be a pair, nil, or a promise but was {}".format(second))
+        if not (second is nil or isinstance(second, Pair)
+                or type(second).__name__ == 'Promise'):
+            raise SchemeError(
+                "cdr can only be a pair, nil, or a promise but was {}".format(
+                    second))
         self.first = first
         self.second = second
 
@@ -79,9 +83,9 @@ class Pair(object):
         else:
             raise TypeError('ill-formed list (cdr is a promise)')
 
+
 class nil(object):
     """The empty list"""
-
     def __repr__(self):
         return 'nil'
 
@@ -94,14 +98,14 @@ class nil(object):
     def map(self, fn):
         return self
 
-nil = nil() # Assignment hides the nil class; there is only one instance
+
+nil = nil()  # Assignment hides the nil class; there is only one instance
 
 # Scheme list parser
 
 # Quotation markers
-quotes = {"'":  'quote',
-          '`':  'quasiquote',
-          ',':  'unquote'}
+quotes = {"'": 'quote', '`': 'quasiquote', ',': 'unquote'}
+
 
 def scheme_read(src):
     """Read the next expression from SRC, a Buffer of tokens.
@@ -117,23 +121,27 @@ def scheme_read(src):
     """
     if src.current() is None:
         raise EOFError
-    val = src.remove_front() # Get the first token
+    val = src.remove_front()  # Get the first token
     if val == 'nil':
         # BEGIN PROBLEM 2
         "*** YOUR CODE HERE ***"
+        return nil
         # END PROBLEM 2
     elif val == '(':
         # BEGIN PROBLEM 2
         "*** YOUR CODE HERE ***"
+        return read_tail(src)
         # END PROBLEM 2
     elif val in quotes:
         # BEGIN PROBLEM 7
         "*** YOUR CODE HERE ***"
+        return Pair(quotes[val], Pair(scheme_read(src), nil))
         # END PROBLEM 7
     elif val not in DELIMITERS:
         return val
     else:
         raise SyntaxError('unexpected token: {0}'.format(val))
+
 
 def read_tail(src):
     """Return the remainder of a list in SRC, starting before an element or ).
@@ -149,19 +157,25 @@ def read_tail(src):
         elif src.current() == ')':
             # BEGIN PROBLEM 2
             "*** YOUR CODE HERE ***"
+            src.remove_front()
+            return nil
             # END PROBLEM 2
         else:
             # BEGIN PROBLEM 2
             "*** YOUR CODE HERE ***"
+            return Pair(scheme_read(src), read_tail(src))
             # END PROBLEM 2
     except EOFError:
         raise SyntaxError('unexpected end of file')
 
+
 # Convenience methods
+
 
 def buffer_input(prompt='scm> '):
     """Return a Buffer instance containing interactive input."""
     return Buffer(tokenize_lines(InputReader(prompt)))
+
 
 def buffer_lines(lines, prompt='scm> ', show_prompt=False):
     """Return a Buffer instance iterating through LINES."""
@@ -171,9 +185,11 @@ def buffer_lines(lines, prompt='scm> ', show_prompt=False):
         input_lines = LineReader(lines, prompt)
     return Buffer(tokenize_lines(input_lines))
 
+
 def read_line(line):
     """Read a single string LINE as a Scheme expression."""
     return scheme_read(Buffer(tokenize_lines([line])))
+
 
 def repl_str(val):
     """Should largely match str(val), except for booleans and undefined."""
@@ -183,9 +199,11 @@ def repl_str(val):
         return "#f"
     if val is None:
         return "undefined"
-    if isinstance(val, numbers.Number) and not isinstance(val, numbers.Integral):
+    if isinstance(val,
+                  numbers.Number) and not isinstance(val, numbers.Integral):
         return repr(val)  # Python 2 compatibility
     return str(val)
+
 
 # Interactive loop
 def read_print_loop():
@@ -205,6 +223,7 @@ def read_print_loop():
         except (KeyboardInterrupt, EOFError):  # <Control>-D, etc.
             print()
             return
+
 
 @main
 def main(*args):
