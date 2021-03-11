@@ -1,0 +1,32 @@
+{
+    "name": "Homework 7",
+    "endpoint": "cal/cs61a/su19/hw07",
+    "src": [
+        "hw07.scm",
+        "hw07.sql"
+    ],
+    "tests": {
+        "tests/multiples_3.py": "ok_test",
+        "tests/rle.py": "ok_test",
+        "tests/by_parent_height.py": "ok_test",
+        "tests/sentences.py": "ok_test",
+        "tests/size_of_dogs.py": "ok_test",
+        "tests/low_variance.py": "ok_test"
+    },
+    "default_tests": [
+        "multiples_3",
+        "rle",
+        "size_of_dogs",
+        "by_parent_height",
+        "sentences",
+        "low_variance"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "grading",
+        "analytics",
+        "unlock",
+        "backup"
+    ]
+}

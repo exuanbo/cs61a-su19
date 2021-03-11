@@ -1,0 +1,7 @@
+#!/usr/bin/env python
+# This is a hybrid Bash/Python script file: https://gist.github.com/andyneff/fafba17b748bba6d7cd5#bash-and-python
+_=''''
+exec python "$0" "$@"
+'''
+import runpy
+globals().update(runpy.run_module('sqlite_shell', None, __name__))
