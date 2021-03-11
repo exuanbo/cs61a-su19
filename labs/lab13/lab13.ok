@@ -1,0 +1,29 @@
+{
+    "name": "Lab 13",
+    "endpoint": "cal/cs61a/su19/lab13",
+    "src": [
+        "lab13.sql",
+        "lab13_extra.sql"
+    ],
+    "tests": {
+        "tests/obedience.py": "ok_test",
+        "tests/smallest-int.py": "ok_test",
+        "tests/matchmaker.py": "ok_test",
+        "tests/lets-count.py": "ok_test",
+        "tests/smallest-int-having.py": "ok_test"
+    },
+    "default_tests": [
+        "obedience",
+        "smallest-int",
+        "matchmaker",
+        "smallest-int-having"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "unlock",
+        "grading",
+        "analytics",
+        "backup"
+    ]
+}
