@@ -12,12 +12,17 @@ CREATE TABLE smallest_int AS
   LIMIT 20;
 
 CREATE TABLE matchmaker AS
-  SELECT a.pet, a.song, a.color, b.color
-  FROM students AS a, students AS b
-  WHERE
-    a.time < b.time AND
-    a.pet = b.pet AND
-    a.song = b.song;
+  SELECT
+    student_1.pet,
+    student_1.song,
+    student_1.color,
+    student_2.color
+  FROM
+    students AS student_1,
+    students AS student_2
+  WHERE student_1.time < student_2.time
+    AND student_1.pet = student_2.pet
+    AND student_1.song = student_2.song;
 
 CREATE TABLE smallest_int_having AS
   SELECT time, smallest
