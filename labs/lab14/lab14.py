@@ -149,15 +149,15 @@ def insert(link, value, index):
         if i == index:
             l.rest = Link(l.first, l.rest)
             l.first = value
-            return
-        helper(l.rest, i + 1)
+        else:
+            helper(l.rest, i + 1)
 
     return helper(link)
 
 
 def link_len(link):
-    if link.rest is Link.empty:
-        return 1
+    if link is Link.empty:
+        return 0
     return 1 + link_len(link.rest)
 
 
