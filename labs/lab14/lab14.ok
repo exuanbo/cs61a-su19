@@ -1,0 +1,30 @@
+{
+    "name": "Lab 14",
+    "endpoint": "cal/cs61a/su19/lab14",
+    "src": [
+        "lab14.py",
+        "lab14.scm"
+    ],
+    "tests": {
+        "lab14.py:prune_small": "doctest",
+        "tests/compose-all.py": "ok_test",
+        "lab14.py:num_splits": "doctest",
+        "lab14.py:insert": "doctest",
+        "tests/has-cycle.py": "ok_test"
+    },
+    "default_tests": [
+        "prune_small",
+        "compose-all",
+        "num_splits",
+        "insert",
+        "has-cycle"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "unlock",
+        "grading",
+        "analytics",
+        "backup"
+    ]
+}
